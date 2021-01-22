@@ -1,0 +1,109 @@
+.container-fluid.custom-container {
+			margin-left: 4%;
+			width: 92%;
+		}
+
+		/* width */
+		::-webkit-scrollbar {
+			width: 0px;
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+			background: #f1f1f1;
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+			background: #888;
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+			background: #555;
+		}
+
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		#codeBox1,
+		#codeBox2,
+		#codeBox3,
+		#codeBox4,
+		#codeBox5,
+		#codeBox6 {
+			height: 45px;
+			width: 45px;
+			font-size: 25px;
+			text-align: center;
+			border: 1px solid #000000;
+			margi
+		}
+
+		.chats tr th:hover,
+		.info tr:hover th,
+		.info tr:hover td,
+		.edit tr:hover th,
+		.edit tr:hover td,
+		.dropdown-menu label:hover,
+		.stats tr:hover td,
+		.savecontact tr:hover,
+		table.signInTable tr:hover td,
+		table.groupTable tr:hover td,
+		table.tableMember tr:hover th,
+		table.tableCC tr:hover th {
+			background-color: rgb(70, 70, 70);
+		}
+
+		.bg-active {
+			background-color: rgb(70, 70, 70);
+		}
+
+		div.status {
+			margin-top: 20px;
+			margin-right: 27%;
+			float: right;
+			position: relative;
+		}
+
+		.blink {
+			animation: blinker 1s linear infinite;
+		}
+
+		@keyframes blinker {
+			50% {
+				opacity: 0.0;
+			}
+		}
+
+		body {
+			background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4XzWoTkRoU-OYhOebGbbyo53QbB-Xd9zyHw&usqp=CAU");
+			background-size: cover;
+		}
+
+		i {
+			cursor: pointer;
+		}
+
+		#rating {
+			font-size: 0;
+		}
+
+		#rating span {
+			font-size: 40px;
+		}
+
+		#rating span::before {
+			content: "☆";
+		}
+
+		#rating span.active::before {
+			content: "★";
+		}
+
+		#rating span:hover {
+			cursor: pointer;
+		}

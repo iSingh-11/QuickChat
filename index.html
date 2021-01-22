@@ -1,0 +1,1355 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="shortcut icon" type="image/x-icon" href="q-letter.png" />
+	<title>QuickChat</title>
+	<script src="let.js"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="custom-container container-fluid" style="display:non;border-radius:5px;border:2px solid white;">
+		<div class="row" style="border-radius:5px;border-bottom:2px solid white;background-color:rgb(46, 46, 46)">
+			<div class="col-md-3" style="border-right:2px solid white;height:70px;">
+				<table class="table ml-n4 mt-n1">
+					<tr>
+						<th>
+							<div class="row">
+								<div class="col-2">
+									<img src="q-letter.png" height="60" width="60">
+								</div>
+
+								<div class="col-6 text-white">
+									<label style="font-size:28px;">QuickChat</label>
+									<br><label style="font-size:13px;margin-top:-10px;">Let's Do Some Talks!</label>
+								</div>
+								<div class="col-4 text-white">
+									<label class="text-white UserName" style="position:fixed;margin-left:40px;font-size:16px;" data-adminControls="g1 ">Guriqbal</label>
+									<img src="https://avatars.githubusercontent.com/u/61901114?s=460&u=3f923848fe5ab62dab34087e662437402e48be6f&v=4" class="rounded-circle yourDP" height="35" width="35" data-toggle="modal" style="object-fit:cover;cursor:pointer;position:fixed;"
+										data-target="#myProfile">
+
+									<a style="font-size:14px;margin:20px 0px 0px 41px;position:fixed;" href="#" class="SignOut">Sign Out</a>
+								</div>
+							</div>
+						</th>
+					</tr>
+				</table>
+			</div>
+
+			<div class="col-md-9 text-white">
+				<div class="row">
+					<div class="col-md-2 mt-1">
+						<label style="font-weight:bold;">Status : </label> <span class='badge badge-pill badge-success' style='cursor:pointer;'>Online</span><br>
+						<label style="font-size:11px;margin-top:-10px;">Tap to change</label>
+					</div>
+
+					<div class="col-md-4 mt-2">
+						<button class="btn btn-primary recordnew" style="border-radius:10px;">No New Messages <span style="display:none;" class="badge badge-light blink">0</span></button><br>
+						<label style="font-size:11px;">Once you have a new message, you will be notified here</label>
+					</div>
+
+					<div class="col-md-3 mt-2">
+						<div class="dropdown">
+							<button class="btn btn-warning text-white dropdown-toggle" style="border-radius:10px;" data-toggle="dropdown">
+								Create New
+							</button><br>
+
+							<div class="dropdown-menu" style="background-color:rgb(46, 46, 46);line-height:25px;height:80px;padding-top: 0px;">
+								<label class="dropdown-item text-white" data-toggle="modal" data-target="#newContact">
+									<i class="fa fa-address-book" style="font-size:18px"></i>&nbsp;&nbsp;Contact
+								</label>
+
+								<label class="dropdown-item text-white createNewGroup">
+									<i class='fas fa-users' style='font-size:18px'></i>&nbsp;&nbsp;Group
+								</label>
+							</div>
+
+							<label style="font-size:11px;">Create a new Contact/Group</label>
+						</div>
+					</div>
+
+					<div class="col-md-3 mt-2">
+						<button class="btn btn-danger text-white" style="border-radius:10px;" data-toggle="modal" data-target="#feedback">Give Feedback</button><br>
+						<label style="font-size:11px;">User Feedbacks are highly welcomed :)</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row my-3">
+			<div class="col-md-3">
+				<span class="text-white updates" style="background-color:rgb(195, 53, 13);display:none;border-radius:10px;position:relative;float:right;font-size:13px;padding:5px;width:280px;margin:-40px -25px 0px 0px;" data-updating=0>
+					<div class="spinner-border text-light" style="height:18px;width:18px;"></div>&nbsp;Updating Database, this may take a while.
+				</span>
+				<div class="row">
+					<div class="col">
+						<div class="input-group">
+							<div class="input-group-prepend"><i class='fas fa-search input-group-text bg-dark text-white' style='font-size:18px;padding-top:10px;'></i></div>
+							<input type="text" class="form-control" placeholder="Search...">
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-3 chat-thread" style="height:575px;overflow:auto;">
+					<div class="col">
+						<table class="table table-dark chats" style="background-color:rgb(42, 42, 42);">
+							<tr style="cursor:pointer;">
+								<th class="g1">
+									<img class="rounded-circle" src="group.JPG" height="50" width="45" style="object-fit:contain;">
+									&nbsp;<label style="font-size:17px;">Chitkara Friends</label>
+									<label style="display:none;">Yaaran Da Group</label>
+									<label style="display:none;">Created 2 Years Ago</label>
+									<label style="display:none;" id="members">
+										<label>
+											<img class='rounded-circle' src='https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png' height='50' width='45' style='object-fit:cover;'>
+											&nbsp;&nbsp;<label style="font-size:18px;font-weight:bold;">Akarsh</label><br>
+											<label style="display:none;font-size:17px;font-weight:bold;">+91 62399 xxxxx</label>
+											<label style="font-size:13px;margin-left:60px;margin-top:-20px;">Available</label>
+										</label>
+										<label>
+											<img class='rounded-circle' src='https://cactusthemes.com/blog/wp-content/uploads/2018/01/tt_avatar_small.jpg' height='50' width='45' style='object-fit:cover;'>
+											&nbsp;&nbsp;<label style="font-size:18px;font-weight:bold;">Harshit</label><br>
+											<label style="display:none;font-size:17px;font-weight:bold;">+91 93547 xxxxx</label>
+											<label style="font-size:13px;margin-left:60px;margin-top:-20px;">Laughter is poison to Fear -George R.R Martin</label>
+										</label>
+										<label>
+											<img class='rounded-circle' src='https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png' height='50' width='45' style='object-fit:cover;'>
+											&nbsp;&nbsp;<label style="font-size:18px;font-weight:bold;">Karan</label><br>
+											<label style="display:none;font-size:17px;font-weight:bold;">+91 73473 xxxxx</label>
+											<label style="font-size:13px;margin-left:60px;margin-top:-20px;">Aspire to inspire before you expire 😎😎</label>
+										</label>
+										<label>
+											<img class='rounded-circle' src='https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png' height='50' width='45' style='object-fit:cover;'>
+											&nbsp;&nbsp;<label style="font-size:18px;font-weight:bold;">Manav</label><br>
+											<label style="display:none;font-size:17px;font-weight:bold;">+91 95928 xxxxx</label>
+											<label style="font-size:13px;margin-left:60px;margin-top:-20px;">Don't mess with a Lion</label>
+										</label>
+										<label>
+											<img class='rounded-circle' src='parth.jpg' height='50' width='45' style='object-fit:cover;'>
+											&nbsp;&nbsp;<label style="font-size:18px;font-weight:bold;">Parth</label><br>
+											<label style="display:none;font-size:17px;font-weight:bold;">+91 70878 xxxxx</label>
+											<label style="font-size:13px;margin-left:60px;margin-top:-20px;">Meow Meow Nigga</label>
+										</label>
+										<label>
+											<img class='rounded-circle' src='https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png' height='50' width='45' style='object-fit:cover;'>
+											&nbsp;&nbsp;<label style="font-size:18px;font-weight:bold;">Shivam</label><br>
+											<label style="display:none;font-size:17px;font-weight:bold;">+91 84271 xxxxx</label>
+											<label style="font-size:13px;margin-left:60px;margin-top:-20px;">Busy</label>
+										</label>
+										<label>
+											<img class='rounded-circle' src='https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png' height='50' width='45' style='object-fit:cover;'>
+											&nbsp;&nbsp;<label style="font-size:18px;font-weight:bold;">Tushar</label><br>
+											<label style="display:none;font-size:17px;font-weight:bold;">+91 97799 xxxxx</label>
+											<label style="font-size:13px;margin-left:60px;margin-top:-20px;">Been acting like a Snake 🐍</label>
+										</label>
+										<label>
+											<img class='rounded-circle' src='https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg' height='50' width='45' style='object-fit:cover;'>
+											&nbsp;&nbsp;<label style="display:none;font-size:18px;font-weight:bold;">Nikhil</label><br>
+											<label style="font-size:17px;font-weight:bold;margin-left:56px;margin-top:-40px;">+91 70568 xxxxx</label>
+											<label style="font-size:13px;margin-left:60px;margin-top:-20px;">Be brave enough to start a conversation that matters</label>
+										</label>
+									</label>
+									<div style="position:relative;margin-top:-15px;margin-left:55px;height:15px;width:180px;font-size:12px;font-weight:normal;color:lightgrey;"></div>
+									<span class='badge badge-pill mt-n5' style="font-size:10px;float:right;"></span>
+								</th>
+							</tr>
+
+							<tr style="cursor:pointer;">
+								<th class="u1">
+									<img class="rounded-circle" src="parth.jpg" height="50" width="45" style="object-fit:cover;">
+									&nbsp;<label style="font-size:17px;">Parth</label>
+									<label style="display:none;">Meow Meow Nigga</label>
+									<label style="display:none;">+91 70878 xxxxx</label>
+									<div style="position:relative;margin-top:-15px;margin-left:55px;height:15px;width:180px;font-size:12px;font-weight:normal;color:lightgrey;"></div>
+									<span class='badge badge-pill mt-n4' style="font-size:10px;float:right;"></span>
+								</th>
+							</tr>
+
+							<tr style="cursor:pointer;">
+								<th class="u2">
+									<img class="rounded-circle" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" height="50" width="45" style="object-fit:cover;">
+									&nbsp;<label style="font-size:17px;">Manav</label>
+									<label style="display:none;">Don't mess with a Lion</label>
+									<label style="display:none;">+91 95928 xxxxx</label>
+									<div style="position:relative;margin-top:-15px;margin-left:55px;height:15px;width:180px;font-size:12px;font-weight:normal;color:lightgrey;"></div>
+									<span class='badge badge-pill mt-n4' style="font-size:10px;float:right;"></span>
+								</th>
+							</tr>
+
+							<tr style="cursor:pointer;">
+								<th class="u3">
+									<img class="rounded-circle" src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png" height="50" width="45" style="object-fit:cover;">
+									&nbsp;<label style="font-size:17px;">Akarsh</label>
+									<label style="display:none;">Available</label>
+									<label style="display:none;">+91 62399 xxxxx</label>
+									<div style="position:relative;margin-top:-15px;margin-left:55px;height:15px;width:180px;font-size:12px;font-weight:normal;color:lightgrey;"></div>
+									<span class='badge badge-pill mt-n4' style="font-size:10px;float:right;"></span>
+								</th>
+							</tr>
+
+							<tr style="cursor:pointer;">
+								<th class="u4">
+									<img class="rounded-circle" src="https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" height="50" width="45" style="object-fit:cover;">
+									&nbsp;<label style="font-size:17px;">Tushar</label>
+									<label style="display:none;">Been acting like a Snake 🐍</label>
+									<label style="display:none;">+91 97799 xxxxx</label>
+									<div style="position:relative;margin-top:-15px;margin-left:55px;height:15px;width:180px;font-size:12px;font-weight:normal;color:lightgrey;"></div>
+									<span class='badge badge-pill mt-n4' style="font-size:10px;float:right;"></span>
+								</th>
+							</tr>
+
+							<tr style="cursor:pointer;">
+								<th class="u5">
+									<img class="rounded-circle" src="https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png" height="50" width="45" style="object-fit:cover;">
+									&nbsp;<label style="font-size:17px;">Shivam</label>
+									<label style="display:none;">Busy</label>
+									<label style="display:none;">+91 84271 xxxxx</label>
+									<div style="position:relative;margin-top:-15px;margin-left:55px;height:15px;width:180px;font-size:12px;font-weight:normal;color:lightgrey;"></div>
+									<span class='badge badge-pill mt-n4' style="font-size:10px;float:right;"></span>
+								</th>
+							</tr>
+
+							<tr style="cursor:pointer;">
+								<th class="u6">
+									<img class="rounded-circle" src="https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png" height="50" width="45" style="object-fit:cover;">
+									&nbsp;<label style="font-size:17px;">Karan</label>
+									<label style="display:none;">Aspire to inspire before you expire 😎😎</label>
+									<label style="display:none;">+91 73473 xxxxx</label>
+									<div style="position:relative;margin-top:-15px;margin-left:55px;height:15px;width:180px;font-size:12px;font-weight:normal;color:lightgrey;"></div>
+									<span class='badge badge-pill mt-n4' style="font-size:10px;float:right;"></span>
+								</th>
+							</tr>
+
+							<tr style="cursor:pointer;">
+								<th class="u7">
+									<img class="rounded-circle" src="https://cactusthemes.com/blog/wp-content/uploads/2018/01/tt_avatar_small.jpg" height="50" width="45" style="object-fit:cover;">
+									&nbsp;<label style="font-size:17px;">Harshit</label>
+									<label style="display:none;">Laughter is poison to Fear -George R.R Martin</label>
+									<label style="display:none;">+91 93547 xxxxx</label>
+									<div style="position:relative;margin-top:-15px;margin-left:55px;height:15px;width:180px;font-size:12px;font-weight:normal;color:lightgrey;"></div>
+									<span class='badge badge-pill mt-n4' style="font-size:10px;float:right;"></span>
+								</th>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-5 py-3 txt" style="display:none;border-left:2px solid white;" data-active="">
+				<div class="text-white" style="border-radius:5px;height:56px;margin-top:-16px;background-color:rgb(46, 46, 46)">
+					<i class="fa fa-angle-double-left" style="font-size:21px;margin-top:17px;margin-left:7px;position:absolute;"></i>
+
+					<label style="font-size:21px;font-weight:bold;margin-left:25px;">
+						<img class="rounded-circle ml-2 mt-2" src="" height="40" width="35" style="position:absolute;object-fit:contain;cursor:pointer;">&nbsp;<label style="margin-left:45px;"></label><br>
+						<label style="font-size:11px;margin:-15px 0px 0px 50px;"></label>
+					</label>
+
+					<div style="position:relative;float:right;margin-top:19px;margin-right:15px;">
+						<i class='fas fa-video' style='font-size:23px;'></i>
+						<i class='fas fa-phone-alt' style='font-size:23px;padding-left:10px;'></i>
+					</div>
+
+					<div class="badge badge-pill badge-success status statusu1" style="width:100px;">Active Now</div>
+					<div class="badge badge-pill badge-success status statusu2" style="width:100px;">Active Now</div>
+					<div class="badge badge-pill badge-success status statusu3" style="width:100px;">Active Now</div>
+					<div class="badge badge-pill badge-success status statusu4" style="width:100px;">Active Now</div>
+					<div class="badge badge-pill badge-success status statusu5" style="width:100px;">Active Now</div>
+					<div class="badge badge-pill badge-success status statusu6" style="width:100px;">Active Now</div>
+					<div class="badge badge-pill badge-success status statusu7" style="width:100px;">Active Now</div>
+				</div>
+
+				<div class="list-group msg msgg1" style="width:100%;height:522px;overflow:auto;" data-predefined-txts="6" data-running=0>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:180px;margin:10px 0px 10px 10px;padding-top:3px;'>
+						<em>Karan</em><br>
+						<label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Hello Friends! 🥃🥃</label>
+					</div>
+
+					<div class='list-group-item bg-dark text-white' style='border-radius:20px 20px 10px 10px;margin:10px 0px 10px 10px;width:260px;display:none;padding-top:3px;'>
+						<em>Parth</em><br>
+						<img style='height:280px;width:260px;border-radius:1px 1px 1px 1px;margin:3px 0px -10px -21px;object-fit:cover;' src="https://www.himgs.com/imagenes/hello/social/hello-fb-logo.png">
+						<label style='margin-bottom:-11px;padding:12px 0px 5px 0px;'>💀💀</label>
+					</div>
+
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;padding-top:3px;'>
+						<em>Manav</em><br>
+						<label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>🤣🤣🤣</label>
+					</div>
+
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:200px;margin:10px 0px 10px 10px;padding-top:3px;'>
+						<em>Akarsh</em><br>
+						<label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>@Karan: Where are you?</label>
+					</div>
+
+					<div class='list-group-item bg-dark text-white' style='border-radius:20px 20px 10px 10px;margin:10px 0px 10px 10px;width:260px;display:none;padding-top:3px;'>
+						<em>Tushar</em><br>
+						<img style='height:280px;width:260px;border-radius:1px 1px 1px 1px;margin:3px 0px -10px -21px;object-fit:cover;' src="https://compote.slate.com/images/c40dcf09-1ca3-417a-b0f4-5461c340d95e.jpeg?width=780&height=520&rect=5296x3531&offset=0x0">
+						<label style='margin-bottom:-11px;padding:12px 0px 5px 0px;'>I am in Party</label>
+					</div>
+
+					<div class='list-group-item bg-dark text-white' style='border-radius:20px 20px 10px 10px;margin:10px 0px 10px 10px;width:260px;display:none;padding-top:3px;'>
+						<em>Manav</em><br>
+						<label style='margin-bottom:-11px;padding:12px 0px 5px 0px;'>Enjoy!!!</label>
+					</div>
+				</div>
+
+				<div class="list-group msg msgu1" style="width:100%;height:522px;overflow:auto;" data-predefined-txts="4" data-running=0 data-updating=0>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Hey! This is Parth. I like
+							cats with tears 🥺</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:20px 20px 10px 10px;margin:10px 0px 10px 10px;width:260px;display:none;font-size:27px;'>
+						<img style='height:280px;width:260px;border-radius:20px 20px 1px 1px;margin:-13px 0px -10px -21px;object-fit:cover;' src="cat1.jpg">
+						<label style='margin-bottom:-11px;padding:12px 0px 5px 0px;'>🥺🥺</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:150px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Testing chalriii
+							😁😔</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:150px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Noice 💀💀</label></div>
+				</div>
+
+				<div class="list-group msg msgu2" style="width:100%;height:522px;overflow:auto;" data-predefined-txts="4" data-running=0 data-updating=0>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:185px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Hello! This is Manav. I
+							like making artworks 🖍</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;margin:10px 0px 10px 10px;padding:15px;width:246px;'>
+						<a href="https://punjab.chitkara.edu.in//Storage/Images/Notice/12254-notice.pdf" target='_blank' style='text-decoration:none;color:white;'>
+							<i class='fas fa-file-pdf text-white' style='font-size:37px;'></i>&nbsp;&nbsp;ETE Datesheet.pdf
+						</a>
+						<label style='margin-bottom:-11px;padding:12px 0px 5px 0px;'></label>
+					</div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>😘 Testing
+							Chaldii</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Vadhiyaaaa</label></div>
+				</div>
+
+				<div class="list-group msg msgu3" style="width:100%;height:522px;overflow:auto;" data-predefined-txts="4" data-running=0 data-updating=0>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:180px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Hii! This is Akarsh. I
+							like making memes 😎</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;margin:10px 0px 10px 10px;display:none;width:226px;'>
+						<img class='rounded-circle' src="https://cdn1.iconfinder.com/data/icons/avatar-97/32/avatar-02-512.png" height='60' width='53' style='object-fit:cover;'>
+
+						&nbsp;&nbsp;<label style='font-size:20px'>Friend</label>
+						<label style='display:none;'>A random description</label>
+						<br><label style='margin:-20px 20px 0px 0px; font-size:13.9px;font-weight:normal:position:relative;float:right;'>+91 69696 xxxxx</label>
+
+						<span class='btn btn-sm badge-pill btn-primary saveCC' style='margin:5px 0px 0px 0px;'>Save Contact</span>
+						<span class='btn btn-sm badge-pill btn-success txtCC' style='margin:5px 0px 0px 5px;'>Message</span>
+						<label style='margin-bottom:-11px;padding:12px 0px 5px 0px;'>text him and tell🤣🤣</label>
+					</div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Testing Going 😁</label>
+					</div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:150px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Full Support
+							🔥🔥🔥🔥🔥</label></div>
+				</div>
+
+				<div class="list-group msg msgu4" style="width:100%;height:522px;overflow:auto;" data-predefined-txts="4" data-running=0 data-updating=0>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:180px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Hey! This is Tushar. I am
+							a Snake 🐍</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px 10px 5px 5px;display:none;margin:10px 0px 10px 10px;width:260px;'>
+						<video style='height:280px;width:260px;border-radius:10px 10px 1px 1px;margin:-13px 0px -10px -21px;object-fit:cover;' src="https://www.youtube.com/watch?v=DVNovyvuiUQ&ab_channel=NewMelody" controls></video>
+						<label style='margin-bottom:-11px;padding:12px 0px 5px 0px;'>I miss those days 🙄</label>
+					</div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Veere, Testing Chaldi
+							😘</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:150px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Kaint</label></div>
+				</div>
+
+				<div class="list-group msg msgu5" style="width:100%;height:522px;overflow:auto;" data-predefined-txts="4" data-running=0 data-updating=0>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:175px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Hello! This is Shivam. UPSC ki tyari chalri apni 🙂</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Bhaii, Harshit ka send karde</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Guri, Testing 👌👌</label>
+					</div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:150px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Bohot Badhiya 😁</label>
+					</div>
+				</div>
+
+				<div class="list-group msg msgu6" style="width:100%;height:522px;overflow:auto;" data-predefined-txts="4" data-running=0 data-updating=0>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:175px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Hii! This is Karan.
+							Dollara wangu nii naam saada chalda 😎</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;margin:10px 0px 10px 10px;display:none;width:226px;'>
+						<img class='rounded-circle' src="https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg" height='60' width='53' style='object-fit:cover;'>
+
+						&nbsp;&nbsp;<label style='font-size:20px'>Nikhil</label>
+						<label style='display:none;'>Be brave enough to start a conversation that matters</label>
+						<br><label style='margin:-20px 20px 0px 0px; font-size:13.9px;font-weight:normal:position:relative;float:right;'>+91 70568 xxxxx</label>
+
+						<span class='btn btn-sm badge-pill btn-primary saveCC' style='margin:5px 0px 0px 0px;'>Save Contact</span>
+						<span class='btn btn-sm badge-pill btn-success txtCC' style='margin:5px 0px 0px 5px;'>Message</span>
+						<label style='margin-bottom:-11px;padding:12px 0px 5px 0px;'>Send me the datesheet</label>
+					</div>
+
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Testing 🥺🥺</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:150px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Noiceee</label></div>
+				</div>
+
+				<div class="list-group msg msgu7" style="width:100%;height:522px;overflow:auto;" data-predefined-txts="3" data-running=0 data-updating=0>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Hey! This is Harshit.
+							Sidhu is lyf 😍</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:170px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>Bhaisaab Testing
+							🤓</label></div>
+					<div class='list-group-item bg-dark text-white' style='border-radius:10px;display:none;width:150px;margin:10px 0px 10px 10px;'><label style='margin-bottom:-3px !important;padding-bottom:-3px !important;'>🔥🔥</label></div>
+				</div>
+
+				<form class="form-inline mb-n4" onsubmit="return false" style="background-color:rgb(46, 46, 46);position:relative;bottom:-2;border-radius:15px;height:50px;">
+					<div class="dropdown ml-2">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="border-radius:30px;">
+							<b>More...</b>
+						</button>
+
+						<div class="dropdown-menu" style="background-color:rgb(46, 46, 46);">
+							<input type="file" accept="image/*,video/*" id="uImg" style="display:none;">
+							<label for="uImg" class="dropdown-item text-white">
+								Upload Photo\Video
+							</label>
+
+							<input type="file" accept="application/pdf" id="uDoc" style="display:none;">
+							<label for="uDoc" class="dropdown-item text-white">
+								Upload Document
+							</label>
+
+							<label class="dropdown-item text-white">
+								Share Contact
+							</label>
+
+							<label class="dropdown-item text-white">
+								Share Group Invite
+							</label>
+						</div>
+					</div>
+
+					<input class="form-control mx-2" type="text" placeholder="Type a message" style="border-radius:10px;height:30px;width:345px;">
+
+					<button type="submit" class="btn btn-md btn-success send" style="border-radius:20px;">
+						<b>&nbsp;Send <i class="fa fa-paper-plane"></i></b>
+					</button>
+				</form>
+			</div>
+
+			<div class="col-md-4 profile" style="display:none;border-left:2px solid white;" data-active="">
+				<div class="text-white" style="border-radius:5px;height:55px;background-color:rgb(46, 46, 46);">
+					<i class="fa fa-angle-double-left" style="font-size:22px;margin-top:10px;margin-left:10px;"></i>
+
+					<label style="font-size:22px;font-weight:bold;margin-top:10px;margin-left:30%;">
+						Contact Info
+					</label>
+				</div>
+
+				<div class="row">
+					<div class="col-md profile-section" style="height:570px;overflow:auto;">
+						<div>
+							<img class="rounded-circle mx-auto d-block my-4" height="293" width="255" style="object-fit:contain;">
+						</div>
+
+						<div class="row editDP" style="height:35px;margin-top:-20px;">
+							<div class="col-md">
+								<p><input type="file" accept="image/*" id="GDP" onchange="loadGDP(event)" style="display:none;"></p>
+								<p><label for="GDP" style="cursor:pointer;margin-top:-13px;margin-left:42%;color:white;">Edit Image</label></p>
+
+								<script>
+									var loadGDP = function(event) 
+										{
+											var t=$("div.profile").attr("data-active");
+											$("."+t).find("img:eq(0)").attr("src",URL.createObjectURL(event.target.files[0]));
+											$("div.txt").find("img:eq(0)").attr("src",URL.createObjectURL(event.target.files[0]));
+											$("div.profile").find("img:eq(0)").attr("src",URL.createObjectURL(event.target.files[0]));
+										};
+								</script>
+							</div>
+						</div>
+
+						<button class="btn btn-sm btn-primary badge-pill saveCI" style="display:none;position:relative;float:right;margin-bottom:-20px;">Add to Contacts</button>
+						<table class="table table-dark info" style="background-color:rgb(42, 42, 42);">
+							<tr>
+								<td style="border-top: none !important;">
+									<h2></h2>
+									<label style="font-size:16px;"></label>
+									<div style="position:relative;float:right;margin-top:-20px;">
+										<i class="fa fa-inbox" style="font-size:28px"></i>&nbsp;&nbsp;
+										<i class='fas fa-video' style='font-size:23px;'></i>&nbsp;&nbsp;
+										<i class='fas fa-phone-alt' style='font-size:23px;'></i>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="border-top: none !important;">
+									<h4 style="font-size:17px;"></h4>
+								</td>
+							</tr>
+						</table>
+
+						<table class="table table-dark stats" style="background-color:rgb(42, 42, 42);">
+							<tr>
+								<td style="border-top: none !important;">
+									<i class='fas fa-photo-video' style='font-size:25px'></i>
+									&nbsp;&nbsp;<label style="font-size:17px">Photos\Videos : </label>
+									<label style="position:relative;float:right;margin-right:19px;font-size:20px">69</label>
+								</td>
+							</tr>
+
+							<tr>
+								<td style="border-top: none !important;">
+									<i class='fas fa-envelope' style='font-size:25px'></i>
+									&nbsp;&nbsp;<label style="font-size:17px">Documents : </label>
+									<label style="position:relative;float:right;margin-right:19px;font-size:20px">69</label>
+								</td>
+							</tr>
+
+							<tr>
+								<td style="border-top: none !important;">
+									<i class='fas fa-users' style='font-size:25px'></i>
+									&nbsp;&nbsp;<label style="font-size:17px">Contact Cards : </label>
+									<label style="position:relative;float:right;margin-right:19px;font-size:20px">69</label>
+								</td>
+							</tr>
+
+							<tr>
+								<td style="border-top: none !important;">
+									<i class='fa fa-pencil-square' style='font-size:25px'></i>
+									&nbsp;&nbsp;<label style="font-size:17px">Texts Only : </label>
+									<label style="position:relative;float:right;margin-right:19px;font-size:20px">69</label>
+								</td>
+							</tr>
+						</table>
+
+						<table class="table table-dark groupTable" style="background-color:rgb(42, 42, 42);">
+							<tr>
+								<td style="border-top: none !important;">
+									<i class="fa fa-plus-circle" style="font-size:25px"></i>
+									&nbsp;&nbsp;<label style="font-size:17px">Add Participants </label>
+								</td>
+							</tr>
+
+							<tr>
+								<td style="border-top: none !important;">
+									<i class="fa fa-link" style="font-size:24px"></i>
+									&nbsp;&nbsp;<label style="font-size:17px">Invite to Group via Link</label>
+								</td>
+							</tr>
+
+							<tr>
+								<td style="border-top: none !important;">
+									<img class="rounded-circle" src="https://avatars.githubusercontent.com/u/61901114?s=460&u=3f923848fe5ab62dab34087e662437402e48be6f&v=4" height="50" width="45" style="object-fit:cover;">
+									&nbsp;&nbsp;<label style="font-size:18px;font-weight:bold;">You</label><br>
+									<label style="font-size:13px;margin-left:60px;margin-top:-20px;">Passionate to Code 👨‍💻</label>
+								</td>
+							</tr>
+						</table>
+
+						<span class="bg-warning text-white bt" style="display:none;border-radius:10px;position:relative;float:right;padding:5px;margin:-40px 70px 0px 0px;width:225px;text-align:center;">Please just wait a few seconds.</span>
+						<button class="btn btn-primary badge-pill ml-4 clearChat" style="width:180px;">Clear Chat</button>
+						<button class="btn btn-danger badge-pill ml-3 deleteContact" style="width:180px;">Delete Contact</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- The Modal -->
+		<div class="modal fade text-white" id="myProfile">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content" style="border:2px solid white;border-radius:10px;background-color:rgb(30, 30, 30);height:615px;width:400px;">
+
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md" style="border-radius:5px;background-color:rgb(46, 46, 46);">
+								<i class="fa fa-angle-double-left" data-dismiss="modal" style="font-size:20px;margin-top:10px;margin-left:10px;"></i>
+
+								<label style="font-size:20px;font-weight:bold;margin-top:10px;margin-left:25%;">
+									Edit Profile
+								</label>
+							</div>
+						</div>
+
+						<div class="row" style="margin-top:30px;">
+							<div class="col-md">
+								<img src="https://avatars.githubusercontent.com/u/61901114?s=460&u=3f923848fe5ab62dab34087e662437402e48be6f&v=4" class="rounded-circle yourDP mx-auto d-block" height="200" width="200" style="object-fit:cover;">
+							</div>
+						</div>
+
+						<div class="row" style="height:35px;">
+							<div class="col-md">
+								<p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display:none;"></p>
+								<p><label for="file" style="cursor:pointer;margin-top:-13px;margin-left:145px;">Edit Image</label></p>
+
+								<script>
+									var loadFile = function(event) {
+										var myImage = document.getElementsByClassName('yourDP');
+										myImage[0].src = URL.createObjectURL(event.target.files[0]);
+										myImage[1].src = URL.createObjectURL(event.target.files[0]);
+										};
+								</script>
+							</div>
+						</div>
+
+						<table class="table table-dark mt-4 edit" style="background-color:rgb(42, 42, 42);">
+							<tr>
+								<th style="width:30px;border-top: none !important;"><i class='fas fa-user-alt' style='font-size:24px;'></i></th>
+								<td style="border-top: none !important;">
+									<form onsubmit="return false" style="height:48px;margin-top:-8px;">
+										<label style="font-size:12px;">Name</label>
+										<button class="btn btn-sm btn-primary savechanges" type="submit" style="font-size:12px;margin-left:120px;border-radius:15px;display:none;">Save Changes</button>
+										<div class="input-group mt-1">
+											<input class="form-control text-white" style="height:28px;background-color:rgb(30, 30, 30);" value="Guriqbal Singh" required disabled>
+											<div class="input-group-append"><i class='fas fa-edit input-group-text' style='font-size:14px'></i></div>
+										</div>
+									</form>
+								</td>
+							</tr>
+
+							<tr>
+								<th style="width:30px;border-top: none !important;"><i class='fa fa-info-circle' style='font-size:24px'></i></th>
+								<td style="border-top: none !important;">
+									<form onsubmit="return false" style="height:48px;margin-top:-8px;">
+										<label style="font-size:12px;">About</label>
+										<button class="btn btn-sm btn-primary savechanges" type="submit" style="font-size:12px;margin-left:120px;border-radius:15px;display:none;">Save Changes</button>
+										<div class="input-group mt-1">
+											<input class="form-control text-white" style="height:28px;background-color:rgb(30, 30, 30);" value="Passionate to Code 👨‍💻" required disabled>
+											<div class="input-group-append"><i class='fas fa-edit input-group-text' style='font-size:14px'></i></div>
+										</div>
+									</form>
+								</td>
+							</tr>
+
+							<tr>
+								<th style="width:30px;border-top: none !important;"><i class='fas fa-phone-alt' style='font-size:24px'></i></th>
+								<td style="border-top: none !important;">
+									<form onsubmit="return false" style="height:48px;margin-top:-8px;">
+										<label style="font-size:12px;">Contact</label>
+										<button class="btn btn-sm btn-primary savechanges mt-n4" type="submit" style="font-size:12px;margin-left:156px;border-radius:15px;display:none;">Save Changes</button>
+										<div class="input-group mt-1">
+											<input class="form-control text-white" style="height:28px;background-color:rgb(30, 30, 30);" value="+91 97808 31702" required disabled>
+											<div class="input-group-append"><i class='fas fa-edit input-group-text' style='font-size:14px'></i></div>
+										</div>
+									</form>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade text-white" id="newContact">
+			<div class="modal-dialog">
+				<div class="modal-content" style="border:2px solid white;border-radius:10px;background-color:rgb(30, 30, 30);height:650px;width:400px;">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md" style="border-radius:5px;background-color:rgb(46, 46, 46);">
+								<i class="fa fa-angle-double-left" data-dismiss="modal" style="font-size:20px;margin-top:10px;margin-left:10px;"></i>
+
+								<label style="font-size:20px;font-weight:bold;margin-top:10px;margin-left:20%;">
+									Add New Contact
+								</label>
+							</div>
+						</div>
+
+						<div class="row" style="margin-top:30px;">
+							<div class="col-md">
+								<img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg"
+									class="rounded-circle newContactDP mx-auto d-block" height="200" width="200" style="object-fit:cover;">
+							</div>
+						</div>
+
+						<div class="row" style="height:35px;">
+							<div class="col-md">
+								<p><input type="file" accept="image/*" name="image" id="newfile" onchange="uploadFile(event)" style="display:none;"></p>
+								<p><label for="newfile" style="cursor:pointer;margin-top:-13px;margin-left:37%;">Upload Image</label></p>
+
+								<script>
+									var uploadFile = function(event) {
+										var newImage = document.getElementsByClassName('newContactDP');
+										newImage[0].src = URL.createObjectURL(event.target.files[0]);
+										};
+								</script>
+							</div>
+						</div>
+
+						<span class="bg-warning" style="display:none;border-radius:5px;position:relative;float:right;padding:5px;margin-bottom:-10px;">User is already in your Contact List.</span>
+						<form onsubmit="return false">
+							<table class="table table-dark mt-4 savecontact" style="background-color:rgb(42, 42, 42)">
+								<tr>
+									<th style="width:30px;border-top: none !important;">
+										<i class='fas fa-user-alt' style='font-size:24px;'></i>
+									</th>
+									<td style="border-top: none !important;">
+										<label style="font-size:12px;">Name</label>
+										<input type="text" class="form-control text-white" style="height:28px;background-color:rgb(30, 30, 30);" required>
+									</td>
+								</tr>
+
+								<tr>
+									<th style="width:30px;border-top: none !important;">
+										<i class='fa fa-info-circle' style='font-size:24px'></i>
+									</th>
+									<td style="border-top: none !important;">
+										<label style="font-size:12px;">About</label>
+										<input type="text" class="form-control text-white" style="height:28px;background-color:rgb(30, 30, 30);" required>
+									</td>
+								</tr>
+
+								<tr>
+									<th style="width:30px;border-top: none !important;">
+										<i class='fas fa-phone-alt' style='font-size:24px'></i>
+									</th>
+									<td style="border-top: none !important;">
+										<label style="font-size:12px;">Contact</label>
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="input-group-text" style="height:28px;">+91</div>
+											</div>
+											<input type="number" min="6000000000" max="9999999999" class="form-control text-white" style="height:28px;background-color:rgb(30, 30, 30);" required>
+										</div>
+									</td>
+								</tr>
+							</table>
+
+							<button type="submit" class="btn btn-primary mx-auto d-block mt-n1 savenew" style="border-radius:10px;width:180px;">
+								Save Contact <i class="fa fa-check-circle" style="font-size:21px"></i>
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade text-white" id="newGroup">
+			<div class="modal-dialog">
+				<div class="modal-content" style="border:2px solid white;border-radius:10px;background-color:rgb(30, 30, 30);height:585px;width:800px;margin-left:-20%;">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md" style="border-radius:5px;background-color:rgb(46, 46, 46);">
+								<i class="fa fa-angle-double-left" data-dismiss="modal" style="font-size:20px;margin-top:10px;margin-left:10px;"></i>
+
+								<label style="font-size:20px;font-weight:bold;margin-top:10px;margin-left:36%;">
+									Create New Group
+								</label>
+							</div>
+						</div>
+
+						<form onsubmit="return false">
+							<table class="table mt-3">
+								<td style="width:50%;border: none !important;">
+									<img src="http://edgeway.eu/wp-content/uploads/2018/04/consulting.png" class="rounded-circle newGroupDP mx-auto d-block" height="200" width="200" style="object-fit:cover;">
+
+									<p><input type="file" accept="image/*" name="image" id="uplGDP" onchange="uploadGDP(event)" style="display:none;"></p>
+									<p><label for="uplGDP" style="cursor:pointer;margin-top:-13px;margin-left:37%;color:white;">Upload Image</label></p>
+
+									<script>
+										var uploadGDP = function(event) {
+											var newImage = document.getElementsByClassName('newGroupDP');
+											newImage[0].src = URL.createObjectURL(event.target.files[0]);
+										};
+									</script>
+
+									<table class="table table-dark mt-4 createGroup" style="background-color:rgb(42, 42, 42)">
+										<tr>
+											<th style="width:30px;border: none !important;">
+												<i class='fas fa-users' style='font-size:24px;'></i>
+											</th>
+
+											<td style="border: none !important;">
+												<label style="font-size:12px;">Name</label>
+												<input type="text" class="form-control text-white" style="height:28px;background-color:rgb(30, 30, 30);" required>
+											</td>
+										</tr>
+
+										<tr>
+											<th style="width:30px;border: none !important;">
+												<i class='fa fa-info-circle' style='font-size:24px'></i>
+											</th>
+
+											<td style="border: none !important; height:85px;">
+												<label style="font-size:12px;">About</label>
+												<input type="text" class="form-control text-white" style="height:28px;background-color:rgb(30, 30, 30);" required>
+											</td>
+										</tr>
+									</table>
+								</td>
+
+								<td style="width:50%;border: none !important;">
+									<div class="row">
+										<div class="col">
+											<div class="input-group">
+												<div class="input-group-prepend"><i class='fas fa-search input-group-text bg-dark text-white' style='font-size:18px;padding-top:10px;'></i></div>
+												<input type="text" class="form-control searchUsers" placeholder="Search...">
+											</div>
+										</div>
+									</div>
+
+									<div class="row mt-3" style="height:365px;overflow:auto;">
+										<div class="col-md">
+											<span class="bg-warning text-white" style="display:none;border-radius:10px;position:fixed;padding:3px;margin:-10px 0px 0px 130px;width:230px;font-size:14px;text-align:center;">Please select atleast one
+												contact.</span>
+											<table class="table table-dark tableUsers" style="background-color:rgb(42, 42, 42);">
+											</table>
+										</div>
+									</div>
+								</td>
+							</table>
+
+							<button class="btn btn-primary mx-auto d-block saveNewGroup" type="submit" style="width:200px;border-radius:10px;margin-top:-27px;">
+								Create Group <i class="fa fa-check-circle" style="font-size:20px;"></i>
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade text-white" id="addMedia">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content" style="border:2px solid white;border-radius:10px;background-color:rgb(30, 30, 30);height:525px;width:400px;">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md" style="border-radius:5px;background-color:rgb(46, 46, 46);">
+								<i class="fa fa-angle-double-left" data-dismiss="modal" style="font-size:20px;margin-top:10px;margin-left:10px;"></i>
+
+								<label style="font-size:20px;font-weight:bold;margin-top:10px;margin-left:25%;">
+									Upload Media
+								</label>
+							</div>
+						</div>
+
+						<img class="newUploadImage mt-3" id="newUploadImage" style="height:79%;width:100%;border-radius:20px;object-fit:cover;">
+						<video class="newUploadVideo mt-3" id="newUploadVideo" style="height:79%;width:100%;border-radius:10px;object-fit:cover;" autoplay loop controls>
+							<source src="" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+
+
+						<form onsubmit="return false" class="form-inline mt-2">
+							<input type="text" class="form-control" placeholder="Add Caption..." style="border-radius:10px;height:30px;width:73%;">
+							<button type="submit" class="btn btn-success ml-2 sendmedia" style="border-radius:20px;"><b>&nbsp;Send <i class="fa fa-paper-plane"></i></b></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade text-white" id="shareContact">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content" style="border:2px solid white;border-radius:10px;background-color:rgb(30,30,30);height:530px;width:400px;">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md" style="border-radius:5px;background-color:rgb(46, 46, 46);">
+								<i class="fa fa-angle-double-left" data-dismiss="modal" style="font-size:22px;margin-top:10px;margin-left:10px;"></i>
+
+								<label style="font-size:20px;font-weight:bold;margin-top:10px;margin-left:20%;">
+									Share Contact Card
+								</label>
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col">
+								<div class="input-group">
+									<div class="input-group-prepend"><i class='fas fa-search input-group-text bg-dark text-white' style='font-size:18px;padding-top:10px;'></i></div>
+									<input type="text" class="form-control searchCC" placeholder="Search...">
+								</div>
+							</div>
+						</div>
+
+						<div class="row mt-3" style="height:378px;overflow:auto;">
+							<div class="col-md">
+								<table class="table table-dark tableCC" style="background-color:rgb(42, 42, 42);">
+								</table>
+							</div>
+						</div>
+
+						<form onsubmit="return false" class="form-inline contactform" style="display:none;">
+							<input type="text" class="form-control" placeholder="Tell something about this person" style="border-radius:10px;height:30px;width:73%;">
+							<button type="submit" class="btn btn-success ml-2 sendcontact" style="border-radius:20px;"><b>&nbsp;Send <i class="fa fa-paper-plane"></i></b></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade text-white" id="shareDocument">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content" style="border:2px solid white;border-radius:10px;background-color:rgb(30, 30, 30);height:415px;width:400px;">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md" style="border-radius:5px;background-color:rgb(46, 46, 46);">
+								<i class="fa fa-angle-double-left" data-dismiss="modal" style="font-size:22px;margin-top:10px;margin-left:10px;"></i>
+
+								<label style="font-size:20px;font-weight:bold;margin-top:10px;margin-left:21%;">
+									Upload Document
+								</label>
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col">
+								<a href="#" target='_blank' style='font-size:250px;margin-left:24%;text-decoration:none;color:lightgrey;'>
+									<i class='fas fa-file-pdf'></i>
+								</a>
+							</div>
+						</div>
+
+						<div class="row mt-n2">
+							<div class="col">
+								<div class="text-white mx-auto d-block docName" style="background-color:rgb(46, 46, 46);height:35px;width:80%;border-radius:20px;font-size:18px;padding:5px 0px 0px 10px;">
+									Document Name
+								</div>
+							</div>
+						</div>
+
+						<form onsubmit="return false" class="form-inline mt-2 documentform">
+							<input type="text" class="form-control" placeholder="About this file..." style="border-radius:10px;height:30px;width:73%;">
+							<button type="submit" class="btn btn-success ml-2 senddocument" style="border-radius:20px;"><b>&nbsp;Send <i class="fa fa-paper-plane"></i></b></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade text-white" id="addMember">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content" style="border:2px solid white;border-radius:10px;background-color:rgb(30, 30, 30);height:573px;width:400px;">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md" style="border-radius:5px;background-color:rgb(46, 46, 46);">
+								<i class="fa fa-angle-double-left" data-dismiss="modal" style="font-size:22px;margin-top:10px;margin-left:10px;"></i>
+
+								<label style="font-size:20px;font-weight:bold;margin-top:10px;margin-left:20%;">
+									Add Participants
+								</label>
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col">
+								<div class="input-group">
+									<div class="input-group-prepend"><i class='fas fa-search input-group-text bg-dark text-white' style='font-size:18px;padding-top:10px;'></i></div>
+									<input type="text" class="form-control searchMember" placeholder="Search...">
+								</div>
+							</div>
+						</div>
+
+						<div class="row mt-3" style="height:378px;overflow:auto;">
+							<div class="col-md">
+								<span class="bg-warning text-white" style="display:none;border-radius:10px;position:fixed;padding:3px;margin:-10px 0px 0px 130px;width:230px;font-size:14px;text-align:center;">Please select atleast one contact.</span>
+								<table class="table table-dark tableMember" style="background-color:rgb(42, 42, 42);">
+								</table>
+							</div>
+						</div>
+
+						<button class="btn btn-primary badge-pill mx-auto d-block mt-2 addParticipants">
+							Add Selected Participants <i class="fas fa-users" style="font-size:20px"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade text-white" id="inviteText">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content" style="border:2px solid white;border-radius:10px;background-color:rgb(30, 30, 30);height:530px;width:400px;">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md" style="border-radius:5px;background-color:rgb(46, 46, 46);">
+								<i class="fa fa-angle-double-left" data-dismiss="modal" style="font-size:22px;margin-top:10px;margin-left:10px;"></i>
+
+								<label style="font-size:20px;font-weight:bold;margin-top:10px;margin-left:20%;">
+									Share Group Invite
+								</label>
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col">
+								<div class="input-group">
+									<div class="input-group-prepend"><i class='fas fa-search input-group-text bg-dark text-white' style='font-size:18px;padding-top:10px;'></i></div>
+									<input type="text" class="form-control searchGroup" placeholder="Search...">
+								</div>
+							</div>
+						</div>
+
+						<div class="row mt-3" style="height:378px;overflow:auto;">
+							<div class="col-md">
+								<table class="table table-dark tableGroup" style="background-color:rgb(42, 42, 42);">
+								</table>
+							</div>
+						</div>
+
+						<form onsubmit="return false" class="form-inline Groupform" style="display:none;">
+							<input type="text" class="form-control" placeholder="Tell something about this group" style="border-radius:10px;height:30px;width:73%;">
+							<button type="submit" class="btn btn-success ml-2 sendgroup" style="border-radius:20px;"><b>&nbsp;Send <i class="fa fa-paper-plane"></i></b></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade text-white" id="inviteViaGroup">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content" style="border:2px solid white;border-radius:10px;background-color:rgb(30, 30, 30);height:530px;width:400px;">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md" style="border-radius:5px;background-color:rgb(46, 46, 46);">
+								<i class="fa fa-angle-double-left" data-dismiss="modal" style="font-size:22px;margin-top:10px;margin-left:10px;"></i>
+
+								<label style="font-size:20px;font-weight:bold;margin-top:10px;margin-left:20%;">
+									Share Group Invite
+								</label>
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col">
+								<div class="input-group">
+									<div class="input-group-prepend"><i class='fas fa-search input-group-text bg-dark text-white' style='font-size:18px;padding-top:10px;'></i></div>
+									<input type="text" class="form-control searchThread" placeholder="Search...">
+								</div>
+							</div>
+						</div>
+
+						<div class="row mt-3" style="height:378px;overflow:auto;">
+							<div class="col-md">
+								<table class="table table-dark tableThread" style="background-color:rgb(42, 42, 42);">
+								</table>
+							</div>
+						</div>
+
+						<form onsubmit="return false" class="form-inline Threadform" style="display:none;">
+							<input type="text" class="form-control" placeholder="Tell something about this group." style="border-radius:10px;height:30px;width:73%;">
+							<button type="submit" class="btn btn-success ml-2 sendViaGroup" style="border-radius:20px;"><b>&nbsp;Send <i class="fa fa-paper-plane"></i></b></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade text-white" id="feedback">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content" style="border:2px solid white;border-radius:12px;background-color:rgb(30, 30, 30);height:540px;width:470px;">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md" style="border-radius:5px;background-color:rgb(46, 46, 46);">
+								<i class="fa fa-angle-double-left" data-dismiss="modal" style="font-size:22px;margin-top:10px;margin-left:10px;"></i>
+
+								<label style="font-size:20px;font-weight:bold;margin-top:10px;margin-left:22%;">
+									Review & Feedback
+								</label>
+							</div>
+						</div>
+
+						<h5 class="mt-3">Rate QuickChat :</h5>
+						<div id='rating' class="mt-n3">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+
+						<span class="bg-success" style="display:none;border;border-radius:5px;position:relative;float:right;padding:5px;margin:-20px 0px -13px 0px;font-size:14.7px;">Thank You! Feedback Sent Successfully.</span>
+						<form onsubmit="return false">
+							<textarea class="form-control text-white" style="background-color:rgb(30, 30, 30);" required></textarea>
+
+							<button type="submit" class="btn btn-primary mx-auto d-block badge-pill mt-2 sendfeedback" style="width:200px;"><b>&nbsp;Send Feedback <i class="fa fa-paper-plane"></i></b></button>
+						</form>
+
+						<div class="row mt-3">
+							<div class="col">
+								<div class="border p-2" style="border-radius:10px;height:240px;">
+									<h5>About the Developer</h5>
+
+									<div class="media">
+										<img src="E:\Guriqbal\All's Extras\Memoji\PHOTO-2020-06-12-01-20-52.jpg" alt="John Doe" class="mr-3 rounded-circle" style="width:60px;">
+
+										<div class="media-body">
+											<p>Guriqbal Singh, a 3rd Year Student of Computer Science and Engineering at Chitkara University, Punjab. He is passionate to Code and loves to develop new things.</p>
+										</div>
+									</div>
+
+									<h5>About QuickChat</h5>
+
+									<p>QuickChat is made with love for users. Special thanks to W3Schools and Stack Overflow for help.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade text-white" id="login" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content mx-auto d-block" style="border-radius:20px;background-color:rgb(30, 30, 30);height:270px;width:270px;">
+				<div class="modal-body">
+					<div class="row mt-4">
+						<div class="col">
+							<div class="spinner-border text-light mx-auto d-block" style="height:130px;width:130px;">
+							</div>
+						</div>
+					</div>
+
+					<div class="row mt-4">
+						<div class="col">
+							<div id="signStatus" style="font-size:25px;width:100%;text-align:center;">Signing Out</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="custom-container container-fluid" style="height:754px;padding:40px;display:none;">
+		<div style="margin:auto;border-radius:20px;background-color:rgb(30, 30, 30);color:white;border:2px solid white;height:670px;width:470px;">
+			<div>
+				<table>
+					<tr>
+						<td>
+							<img class="mt-4" src="q-letter.png" style="height:200px;width:200px;object-fit:cover;">
+						</td>
+
+						<td>
+							<label style="font-weight:bold;font-size:45px;color:white;">
+								QuickChat
+							</label>
+							<br>
+							<div style="font-size:20px;color:white;">&nbsp;Let's Do Some Talks!</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<h3 style="padding-left:7%;margin-top:20px;">Login :</h3>
+
+			<span class="bg-warning" style="display:none;border-radius:5px;position:relative;float:right;padding:5px;margin:0px 15px -30px 0px;font-size:14px;">Phone Number or Password is Incorrect.</span>
+
+			<form onsubmit="return false" class="mx-auto d-block mt-3" style="width:90%;">
+				<table class="table table-dark signInTable" style="border-radius:20px;background-color:rgb(42,42,42);">
+					<tr>
+						<td style="border-top: none !important;">
+							<label style="font-size:16px;margin-top:5px;">Phone Number</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">+91</div>
+								</div>
+								<input type="number" min="6000000000" max="9999999999" class="form-control text-white" style="background-color:rgb(30, 30, 30);" required>
+							</div>
+						</td>
+					</tr>
+
+					<tr>
+						<td style="border-top: none !important;height:103px;">
+							<label style="font-size:16px;">Password</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text fa fa-lock" style="font-size:25px;padding:6px 16px 0px 16px;"></div>
+								</div>
+								<input type="password" class="form-control text-white" style="background-color:rgb(30, 30, 30);" required>
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				Forgot Password? Recover <a href="#" class="recover">here</a>
+				<button type="submit" class="mx-auto d-block btn btn-primary mt-2 signIn" style="border-radius:20px;width:170px;">
+					<b>Sign In</b>
+					&nbsp;<i class="fa fa-sign-in" style="font-size:24px"></i>
+				</button>
+
+				<label class="mt-3">New to QuickChat? <a class="mx-auto d-block" href="#">Making an Account is Easy</a></label>
+			</form>
+		</div>
+	</div>
+
+	<div class="custom-container container-fluid" style="height:754px;padding:120px;display:none;">
+		<div style="margin:auto;border-radius:20px;background-color:rgb(30, 30, 30);color:white;border:2px solid white;height:530px;width:470px;">
+			<div>
+				<table>
+					<tr>
+						<td>
+							<img class="mt-4" src="q-letter.png" style="height:200px;width:200px;object-fit:cover;">
+						</td>
+
+						<td>
+							<label style="font-weight:bold;font-size:45px;color:white;">
+								QuickChat
+							</label>
+							<br>
+							<div style="font-size:20px;color:white;">&nbsp;Let's Do Some Talks!</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<h3 style="padding-left:7%;margin-top:20px;">Recover Your Account :</h3>
+
+			<label style="font-size:16px;padding-left:7%;margin-top:5px;">1) Enter your Phone Number to get started</label>
+
+			<form onsubmit="return false" class="mx-auto d-block mt-1" style="width:90%;">
+				<table class="table table-dark recoverTable1" style="border-radius:20px;background-color:rgb(42,42,42);">
+					<tr>
+						<td style="border-top: none !important;height:50px;">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">+91</div>
+								</div>
+								<input type="number" min="6000000000" max="9999999999" class="form-control text-white" style="background-color:rgb(30, 30, 30);" required>
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<- Go Back to <a href="#" class="backToLogin">Login Page</a>
+					<button type="submit" class="mx-auto d-block btn btn-primary mt-2 genOTP" style="border-radius:20px;width:170px;">
+						<b>Generate OTP</b>
+						&nbsp;<i class="fa fa-sign-in" style="font-size:24px"></i>
+					</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="custom-container container-fluid" style="height:754px;padding:100px;display:none;">
+		<div style="margin:auto;border-radius:20px;background-color:rgb(30, 30, 30);color:white;border:2px solid white;height:570px;width:470px;">
+			<div>
+				<table>
+					<tr>
+						<td>
+							<img class="mt-4" src="q-letter.png" style="height:200px;width:200px;object-fit:cover;">
+						</td>
+
+						<td>
+							<label style="font-weight:bold;font-size:45px;color:white;">
+								QuickChat
+							</label>
+							<br>
+							<div style="font-size:20px;color:white;">&nbsp;Let's Do Some Talks!</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<h3 style="padding-left:7%;margin-top:20px;">Recover Your Account :</h3>
+
+			<label style="font-size:16px;padding-left:7%;margin-top:5px;margin-bottom:-5px;">2) Enter the OTP sent to <label id="sentOTP"></label></label>
+
+			<form onsubmit="return false" class="mt-1" style="width:90%;margin-left:33px;">
+				<input id="codeBox1" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)" />
+				<input id="codeBox2" maxlength="1" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)" />
+				<input id="codeBox3" maxlength="1" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)" />
+				<input id="codeBox4" maxlength="1" onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)" />
+				<input id="codeBox5" maxlength="1" onkeyup="onKeyUpEvent(5, event)" onfocus="onFocusEvent(5)" />
+				<input id="codeBox6" maxlength="1" onkeyup="onKeyUpEvent(6, event)" onfocus="onFocusEvent(6)" />
+
+				<span class="bg-warning" style="display:none;border-radius:5px;position:relative;float:right;padding:5px;margin:10px 15px 0px 0px;font-size:14px;">Incorrect OTP! Try Again</span>
+
+				<br><br>
+				<- Go Back to <a href="#" class="backToLogin">Login Page</a>
+					<button type="submit" class="mx-auto d-block btn btn-primary mt-2 checkOTP" style="border-radius:20px;width:200px;">
+						<b>Recover Account</b>
+						&nbsp;<i class="fa fa-sign-in" style="font-size:24px"></i>
+					</button>
+
+					<label style="font-size:16px;margin-top:10px;">Note: OTP will be sent only if the phone number is registered with QuickChat<br>
+						Don't have an account yet? Create one <a href="#">here</a></label>
+			</form>
+
+			<script>
+				function getCodeBoxElement(index) 
+      				{
+        				return document.getElementById('codeBox' + index);
+      				}
+     				function onKeyUpEvent(index, event) 
+     				{
+        				const eventCode = event.which || event.keyCode;
+        				if (getCodeBoxElement(index).value.length === 1) 
+        				{
+          					if (index !== 6) 
+          					{
+            					getCodeBoxElement(index+ 1).focus();
+          					} 
+          					else 
+          					{
+            					getCodeBoxElement(index).blur();
+            				}
+        				}
+        				if (eventCode === 8 && index !== 1) 
+        				{
+         					getCodeBoxElement(index - 1).focus();
+       		 			}
+     			 	}
+      				function onFocusEvent(index) 
+      				{
+       					for (item = 1; item < index; item++) 
+       					{
+          					const currentElement = getCodeBoxElement(item);
+          					if (!currentElement.value) 
+          					{
+              					currentElement.focus();
+              					break;
+          					}
+        				}
+     			 	}
+			</script>
+		</div>
+	</div>
+
+	<div class="custom-container container-fluid" style="height:749px;padding:70px;display:none;">
+		<div style="margin:auto;border-radius:20px;background-color:rgb(30, 30, 30);color:white;border:2px solid white;height:610px;width:470px;">
+			<div>
+				<table>
+					<tr>
+						<td>
+							<img class="mt-4" src="q-letter.png" style="height:200px;width:200px;object-fit:cover;">
+						</td>
+
+						<td>
+							<label style="font-weight:bold;font-size:45px;color:white;">
+								QuickChat
+							</label>
+							<br>
+							<div style="font-size:20px;color:white;">&nbsp;Let's Do Some Talks!</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<h3 style="padding-left:7%;margin-top:20px;">Update Account Password :</h3>
+
+			<span class="bg-success" style="display:none;border-radius:5px;position:relative;float:right;padding:5px;margin:0px 15px -30px 0px;font-size:14px;">Password Updated Successfully</span>
+
+			<form onsubmit="return false" class="mx-auto d-block mt-3" style="width:90%;">
+				<table class="table table-dark updatePassword" style="border-radius:20px;background-color:rgb(42,42,42);">
+					<tr>
+						<td style="border: none !important;">
+							<label style="font-size:16px;margin-top:5px;">New Password</label>
+							<div class="input-group">
+								<div class="input-group-prepend" style="height:35px;">
+									<div class="input-group-text fa fa-lock" style="font-size:25px;padding:4px 16px 0px 16px;"></div>
+								</div>
+								<input type="password" class="form-control text-white" style="background-color:rgb(30, 30, 30);height:35px;" required>
+							</div>
+						</td>
+					</tr>
+
+					<tr>
+						<td style="border: none !important;height:103px;">
+							<label style="font-size:16px;">Confirm New Password</label>
+							<div class="input-group">
+								<div class="input-group-prepend" style="height:35px;">
+									<div class="input-group-text fa fa-check" style="font-size:25px;padding:5px -15px 0px -15px;"></div>
+								</div>
+								<input type="password" class="form-control text-white" style="background-color:rgb(30, 30, 30);height:35px;" required>
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				Next time you login, you will require this new password
+				<button type="submit" class="mx-auto d-block btn btn-primary mt-2 updatePasswordButton" style="border-radius:20px;width:200px;">
+					<b>Update Password</b>
+					&nbsp;<i class="fa fa-sign-in" style="font-size:24px"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>
